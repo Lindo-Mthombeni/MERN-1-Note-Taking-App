@@ -1,7 +1,7 @@
 import { RequestHandler, Response } from "express";
-import Note from "../model/Note";
-import { ResponseArgs } from "../types";
-import { AppError } from "../utils/AppError";
+import Note from "../model/Note.js";
+import { ResponseArgs } from "../types.js";
+import { AppError } from "../utils/AppError.js";
 
 const jsonData = (success: boolean, msg?: string, data?: any) => {
   if (msg === "" || undefined) return { success, data };

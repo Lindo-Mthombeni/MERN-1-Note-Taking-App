@@ -5,7 +5,7 @@ import {
   createNote,
   updateNote,
   deleteNote,
-} from "../controller/notesControllers";
+} from "../controller/notesControllers.js";
 
 const router = express.Router();
 

@@ -1,25 +1,34 @@
+import { log, error } from "node:console";
 import express, { NextFunction, Request, Response } from "express";
+import { connectDB } from "./config/db.js";
 import cors from "cors";
 import dotenv from "dotenv";
-import noteRoutes from "./routes/notesRoutes";
-import { connectDB } from "./config/db";
-import { log, error } from "node:console";
-import rateLimiter from "./middleware/rateLimiter";
+import noteRoutes from "./routes/notesRoutes.js";
+import rateLimiter from "./middleware/rateLimiter.js";
+import path from "path";
 
 dotenv.config({ quiet: true });
 
 const server = express();
+const __dirname = path.resolve();
 
 // middleware
-server.use(cors());
+if (process.env.NODE_ENV !== "production") {
+  server.use(cors());
+}
 server.use(express.json()); // this middleware will parse JSON bodies: req.body
 server.use(rateLimiter);
 
 // routes
-server.get("/", (_, res) => {
-  res.send("<a href='/api/notes'>Go Notes</a>");
-});
 server.use("/api/notes", noteRoutes);
+
+if (process.env.NODE_ENV === "production") {
+  server.use(express.static(path.join(__dirname, "../client/dist")));
+
+  server.get(/.*/, (req, res) => {
+    res.sendFile(path.join(__dirname, "../client", "dist", "index.html"));
+  });
+}
 
 // server err capture
 server.use((err: any, req: Request, res: Response, next: NextFunction) => {

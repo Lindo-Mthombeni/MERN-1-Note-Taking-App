@@ -1,13 +1,15 @@
 import { ArrowLeftIcon } from "lucide-react";
 import { Link } from "react-router";
 
-const BackToNotes = () => {
+const backToNotes = () => {
   return (
-    <Link to="/" className="flex items-center gap-2 w-fit btn btn-ghost mb-6">
-      <ArrowLeftIcon className="size-5" />{" "}
-      <span className="font-bold">Back to Notes</span>
+    <Link to="/">
+      <button className="btn btn-ghost">
+        <ArrowLeftIcon className="size-4" />
+        Back To Notes
+      </button>
     </Link>
   );
 };
 
-export default BackToNotes;
+export default backToNotes;

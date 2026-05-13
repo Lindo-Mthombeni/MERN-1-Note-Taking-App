@@ -3,7 +3,7 @@ import { useNavigate, useParams } from "react-router";
 import api from "../lib/axios";
 import toast from "react-hot-toast";
 import Loader from "../components/Loader";
-import BackToNotes from "../components/backToNotes";
+import BackToNotes from "../components/BackToNotes";
 import { Trash2Icon } from "lucide-react";
 import type { Note } from "../utils/types";
 import {

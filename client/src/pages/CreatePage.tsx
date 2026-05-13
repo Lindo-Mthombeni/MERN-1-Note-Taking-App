@@ -3,7 +3,7 @@ import { useState } from "react";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router";
 import api from "../lib/axios";
-import BackToNotes from "../components/backToNotes";
+import BackToNotes from "../components/BackToNotes";
 
 const CreatePage = () => {
   const [title, setTitle] = useState("");

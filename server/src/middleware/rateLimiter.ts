@@ -1,5 +1,5 @@
 import { log } from "node:console";
-import rateLimit from "../config/upstash";
+import rateLimit from "../config/upstash.js";
 import { RequestHandler } from "express";
 
 const rateLimiter: RequestHandler = async (req, res, next) => {
