@@ -1,0 +1,40 @@
+@import "tailwindcss";
+@plugin "daisyui" {
+  themes:
+    emerald --default,
+    night --prefersdark;
+}
+
+@theme {
+  --text-lg: clamp(1.5rem, 1.2333333333333334rem + 1.3333333333333335vw, 2rem);
+  --color-bg: hsl(0, 0%, 85%);
+  --color-card: hsl(0, 0%, 95%);
+  --color-outline: oklab(0.35519 -0.00390648 -0.0317607 / 0.2);
+
+  @keyframes rotate {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+  --animate-loader: rotate 1s linear infinite;
+}
+
+@layer base {
+  h1 {
+    @apply text-lg font-extrabold;
+  }
+}
+
+@layer components {
+  .card-items {
+    & div {
+      @apply flex flex-col mb-4 max-w-2xl;
+    }
+  }
+
+  .textarea-ghost {
+    field-sizing: content;
+    resize: none; /* Removes the manual resize handle in the corner */
+    overflow: hidden; /* Ensures no scrollbar flickers while growing */
+  }
+}
