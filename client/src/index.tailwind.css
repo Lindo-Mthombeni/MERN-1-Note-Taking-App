@@ -20,6 +20,9 @@
 }
 
 @layer base {
+  body {
+    @apply selection:bg-primary selection:text-white;
+  }
   h1 {
     @apply text-lg font-extrabold;
   }
