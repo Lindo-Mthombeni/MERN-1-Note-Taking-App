@@ -10,6 +10,7 @@
   --color-bg: hsl(0, 0%, 85%);
   --color-card: hsl(0, 0%, 95%);
   --color-outline: oklab(0.35519 -0.00390648 -0.0317607 / 0.2);
+  --spacing-nav: 64px;
 
   @keyframes rotate {
     to {

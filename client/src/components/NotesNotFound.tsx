@@ -3,7 +3,7 @@ import { Link } from "react-router";
 
 const NotesNotFound = () => {
   return (
-    <div className="absolute inset-[64px_0_0_0] flex flex-col items-center z-1">
+    <div className="absolute inset-[var(--spacing-nav)_0_0_0] flex flex-col items-center z-1">
       <div className="mt-40 flex flex-col items-center gap-4">
         <div className="bg-primary/30 p-7 rounded-full w-fit mb-4">
           <NotebookIcon className="stroke-primary" />
