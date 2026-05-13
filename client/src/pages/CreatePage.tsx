@@ -40,7 +40,9 @@ const CreatePage = () => {
   };
   return (
     <section className="min-h-screen px-10 py-5">
-      <BackToNotes />
+      <div className="mb-6">
+        <BackToNotes />
+      </div>
       <div className="my-auto mx-auto card bg-neutral not-dark:bg-card max-w-3xl">
         <div className="card-body">
           <h2 className="card-title text-2xl mb-4">Create New Note</h2>

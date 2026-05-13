@@ -4,8 +4,8 @@ import { Link } from "react-router";
 const NavBar = () => {
   return (
     <nav className="h-nav bg-base-300 not-dark:bg-card z-10">
-      <div className="mx-auto max-w-[90%] py-2 px-1">
-        <div className="flex items-center justify-between gap-2">
+      <div className="mx-auto max-w-[90%] py-2 px-1 h-full">
+        <div className="flex items-center justify-between gap-x-2 h-full">
           <h1 className="text-primary tracking-tight shrink-0">Note App</h1>
           <p className="text-primary font-bold text-xs tracking-tight text-center leading-tight">
             MADE BY LINDOKUHLE MTHOMBENI
