@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { DeleteWindowContext } from "../lib/deleteWindowContext";
 import api from "../lib/axios";
 import toast from "react-hot-toast";
@@ -7,6 +7,7 @@ import { useNavigate } from "react-router";
 const DeleteWindow = () => {
   const deleteWindow = useContext(DeleteWindowContext);
   const navigate = useNavigate();
+  const [loading,setLoading] = useState(false)
 
   const confirmDelete = async () => {
     if (!deleteWindow?.targetId) return;
