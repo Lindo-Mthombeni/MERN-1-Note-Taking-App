@@ -16,10 +16,12 @@ const DeleteWindow = () => {
       toast.success("Note Deleted");
       deleteWindow.onDeleteSuccess(deleteWindow.targetId);
       deleteWindow.setIsOpen(false);
+      setLoading(true)
       navigate("/");
     } catch (error) {
       toast.error("Failed to delete");
-    }
+    } finally {
+      setLoading(false)
   };
 
   if (!deleteWindow?.isOpen) return null;
@@ -44,8 +46,9 @@ const DeleteWindow = () => {
             type="button"
             className="btn btn-error"
             onClick={() => confirmDelete()}
+            disabled={loading}
           >
-            Delete
+            {loading ? "Deleting" : "Delete"}
           </button>
         </div>
       </div>
