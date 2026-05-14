@@ -22,6 +22,7 @@ const DeleteWindow = () => {
       toast.error("Failed to delete");
     } finally {
       setLoading(false)
+    }
   };
 
   if (!deleteWindow?.isOpen) return null;
