@@ -12,12 +12,12 @@ const DeleteWindow = () => {
   const confirmDelete = async (e: React.SubmitEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!deleteWindow?.targetId) return;
+    setLoading(true);
     try {
       await api.delete(`/notes/${deleteWindow.targetId}`);
       toast.success("Note Deleted");
       deleteWindow.onDeleteSuccess(deleteWindow.targetId);
       deleteWindow.setIsOpen(false);
-      setLoading(true);
       navigate("/");
     } catch (error) {
       toast.error("Failed to delete");
