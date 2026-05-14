@@ -1,4 +1,3 @@
-import { log, error } from "node:console";
 import express, { NextFunction, Request, Response } from "express";
 import { connectDB } from "./config/db.js";
 import cors from "cors";
@@ -15,6 +14,7 @@ const __dirname = path.resolve();
 // middleware
 if (process.env.NODE_ENV !== "production") {
   server.use(cors());
+  console.log("Cors Should Work");
 }
 server.use(express.json()); // this middleware will parse JSON bodies: req.body
 server.use(rateLimiter);
@@ -35,7 +35,7 @@ server.use((err: any, req: Request, res: Response, next: NextFunction) => {
   const statusCode = err.status || 500;
   const message = err.message || "Internal Server Error";
 
-  error(`[Error] ${req.method} ${req.url}:`, err.stack);
+  console.error(`[Error] ${req.method} ${req.url}:`, err.stack);
 
   res.status(statusCode).json({
     success: false,
@@ -49,10 +49,10 @@ const startServer = async () => {
     await connectDB();
     const PORT = process.env.PORT || 5000;
     server.listen(PORT, () => {
-      log(`Server running on port ${PORT}...`);
+      console.log(`Server running on port ${PORT}...`);
     });
   } catch (err) {
-    error("Failed to start server:", err);
+    console.error("Failed to start server:", err);
     process.exit(1);
   }
 };

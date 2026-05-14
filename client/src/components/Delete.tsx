@@ -7,21 +7,22 @@ import { useNavigate } from "react-router";
 const DeleteWindow = () => {
   const deleteWindow = useContext(DeleteWindowContext);
   const navigate = useNavigate();
-  const [loading,setLoading] = useState(false)
+  const [loading, setLoading] = useState(false);
 
-  const confirmDelete = async () => {
+  const confirmDelete = async (e: React.SubmitEvent<HTMLFormElement>) => {
+    e.preventDefault();
     if (!deleteWindow?.targetId) return;
     try {
       await api.delete(`/notes/${deleteWindow.targetId}`);
       toast.success("Note Deleted");
       deleteWindow.onDeleteSuccess(deleteWindow.targetId);
       deleteWindow.setIsOpen(false);
-      setLoading(true)
+      setLoading(true);
       navigate("/");
     } catch (error) {
       toast.error("Failed to delete");
     } finally {
-      setLoading(false)
+      setLoading(false);
     }
   };
 
@@ -29,7 +30,10 @@ const DeleteWindow = () => {
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4">
-      <div className="w-full max-w-md rounded-2xl bg-base-100 p-6">
+      <form
+        onSubmit={confirmDelete}
+        className="w-full max-w-md rounded-2xl bg-base-100 p-6"
+      >
         <h2 className="text-xl font-bold">Delete note</h2>
         <p className="mt-2 text-base-content/70">
           Are you sure you want to delete this note? This action cannot be
@@ -43,16 +47,11 @@ const DeleteWindow = () => {
           >
             Cancel
           </button>
-          <button
-            type="button"
-            className="btn btn-error"
-            onClick={() => confirmDelete()}
-            disabled={loading}
-          >
+          <button type="submit" className="btn btn-error" disabled={loading}>
             {loading ? "Deleting" : "Delete"}
           </button>
         </div>
-      </div>
+      </form>
     </div>
   );
 };
